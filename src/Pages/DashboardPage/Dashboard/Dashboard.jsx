@@ -30,7 +30,7 @@ const Dashboard = () => {
                           <MdCreateNewFolder></MdCreateNewFolder>  Previous Task  </div></NavLink>
                     </li>
                     <li className="p-3 border-b-2 border-slate-400 rounded-lg">
-                        <NavLink to="/dashboard/previousTask">
+                        <NavLink to="/dashboard/mangeTask">
                             <div className="flex items-center gap-1">
                           <MdManageHistory></MdManageHistory>  Manage Task  </div></NavLink>
                     </li>
@@ -39,7 +39,7 @@ const Dashboard = () => {
                 </ul>
             </div>
             {/* content */}
-            <div className="flex-1  h-screen bg-white text-black w-full  mt-5 mr-2 rounded-md">
+            <div className="flex-1  h-screen bg-white text-black w-full  mt-5 mx-5 rounded-md">
                 {/* <h1 className=" text-4xl my-2 p-2">Dashboard</h1> */}
                 <Outlet></Outlet>
             </div>

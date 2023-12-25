@@ -9,6 +9,8 @@ import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../DashboardPage/Dashboard/Dashboard";
 import AddTask from "../DashboardPage/AddTask/AddTask";
 import ErrorPage from "../ErrorPage/ErrorPage";
+import PreviousTask from "../DashboardPage/PreviousTAsk/PreviousTask";
+import ManageTask from "../DashboardPage/ManageTask/ManageTask";
   
   const router = createBrowserRouter([
     {
@@ -42,6 +44,14 @@ import ErrorPage from "../ErrorPage/ErrorPage";
         {
           path: "",
           element: <AddTask></AddTask>,
+        },
+        {
+          path: "previousTask",
+          element: <PreviousTask></PreviousTask>,
+        },
+        {
+          path: "mangeTask",
+          element: <ManageTask></ManageTask>,
         },
       ]
       }
