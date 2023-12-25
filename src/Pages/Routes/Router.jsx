@@ -5,8 +5,9 @@ import MainLayout from "../MainLayout/MainLayout";
 import Home from "../HomePage/Home/Home";
 import Register from "../Register/Register";
 import Login from "../Login/Login";
-import Dashboard from "../DashboardPage/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../DashboardPage/Dashboard/Dashboard";
+import AddTask from "../DashboardPage/AddTask/AddTask";
   
   const router = createBrowserRouter([
     {
@@ -31,6 +32,16 @@ import PrivateRoute from "./PrivateRoute";
         },
     ]
     },
+    {
+      path: "dashboard",
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+      children: [
+        {
+          path: "",
+          element: <AddTask></AddTask>,
+        },
+      ]
+      }
   ]);
 
 export default router;
