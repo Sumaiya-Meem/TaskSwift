@@ -8,11 +8,13 @@ import Login from "../Login/Login";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../DashboardPage/Dashboard/Dashboard";
 import AddTask from "../DashboardPage/AddTask/AddTask";
+import ErrorPage from "../ErrorPage/ErrorPage";
   
   const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
+      errorElement:<ErrorPage></ErrorPage>,
       children: [
         {
           path: "/",
@@ -35,6 +37,7 @@ import AddTask from "../DashboardPage/AddTask/AddTask";
     {
       path: "dashboard",
       element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+      errorElement:<ErrorPage></ErrorPage>,
       children: [
         {
           path: "",
