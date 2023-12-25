@@ -5,7 +5,7 @@ import { Table } from 'flowbite-react';
 const PreviousTask = () => {
     const { user } = useContext(AuthContext)
     const [allTask] = useTask();
-    console.log(allTask.email)
+    // console.log(allTask.email)
     const userTasks = allTask.filter(task => task.email === user.email);
 
     return (
