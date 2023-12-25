@@ -9,7 +9,7 @@ const Banner = () => {
                     Streamline your daily routine with our user-friendly task management solution. Whether it's work projects, personal goals, or important deadlines, our platform helps you stay organized and focused on what matters most.
                 </p>
                 <Button 
-                className="mt-3 w-40"
+                className="mt-3 w-32 bg-[#3cac9f]"
                 >
                 Let’s Explore</Button>
             </div>
