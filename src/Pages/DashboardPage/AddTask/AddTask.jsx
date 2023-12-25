@@ -21,12 +21,13 @@ const AddTask = () => {
         const Priority= form.Priority.value || "Not-Given"
         const Date= form.Date.value || "Not-Given"
         const Time= form.Time.value || "Not-Given"
-        const Status= "To_do" || "Not-Given"
+        const Status= "On_Going" || "Not-Given"
+        const email= user.email || "Not-Given"
 
         const taskInfo ={
-            title,Description,Priority,Date,Time,Status
+            title,Description,Priority,Date,Time,Status,email
         }
-        console.log(taskInfo)
+        console.log("Email",user.email)
         axiosSecure.post('/tasks',taskInfo)
         .then(res=>{
             if(res.data.insertedId){

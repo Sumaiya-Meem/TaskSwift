@@ -1,6 +1,7 @@
 
-import useAxiosSecure from './useAxiosSecure';
+
 import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from './useAxiosSecure';
 
 const useTask = () => {
     const axiosSecure = useAxiosSecure();

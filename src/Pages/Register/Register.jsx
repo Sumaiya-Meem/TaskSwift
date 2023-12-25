@@ -7,11 +7,11 @@ import { AuthContext } from '../../Context/AuthProvider';
 import Swal from 'sweetalert2';
 import regiAnimation from "../../../public/Animation - 1701619162523.json"
 import Lottie from 'lottie-react';
-// import useAxiosSecure from '../../hooks/useAxiosSecure';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const Register = () => {
 
-//   const axiosSecure = useAxiosSecure()
+  const axiosSecure = useAxiosSecure()
   const {register,handleSubmit,reset,formState: { errors }} = useForm()
 
   const {createUser,updateUserProfile,logOut } =useContext(AuthContext);
@@ -29,26 +29,27 @@ const Register = () => {
         // create user in database
         const userInfo={
           name:data.name,
-          email:data.email
+          email:data.email,
+          profession:data.profession,
         }
-        // axiosSecure.post('/users',userInfo)
-        // .then(res=>{
-        //   if(res.data.insertedId){
-        //     console.log("user add in database")
-        //     reset();
-        //     Swal.fire({
-        //       position: "top-center",
-        //       icon: "success",
-        //       title: "Register Successfully",
-        //       showConfirmButton: false,
-        //       timer: 1500
-        //     });
-        //     logOut().then(() => {
-        //       console.log("User logged out")
-        //       navigate("/login");
-        //     });
-        //   }
-        // })
+        axiosSecure.post('/users',userInfo)
+        .then(res=>{
+          if(res.data.insertedId){
+            console.log("user add in database")
+            reset();
+            Swal.fire({
+              position: "top-center",
+              icon: "success",
+              title: "Register Successfully",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            logOut().then(() => {
+              console.log("User logged out")
+              navigate("/login");
+            });
+          }
+        })
         
       })
       .catch(err=>console.log(err))
@@ -91,6 +92,14 @@ const Register = () => {
            {errors.image?.type === "required" && (
         <p className='text-red-600'>Photo field is required</p>
         )}
+        </div>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="email1" value="Profession" />
+          </div>
+          <TextInput id=""  {...register("profession",
+         { required: true})}  type="text" placeholder="" />
+          
         </div>
         <div>
           <div className="mb-2 block">

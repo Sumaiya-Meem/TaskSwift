@@ -39,7 +39,7 @@ const Dashboard = () => {
                 </ul>
             </div>
             {/* content */}
-            <div className="flex-1  h-screen bg-white text-black w-full  mt-5 mx-5 rounded-md">
+            <div className="flex-1  h-screen bg-white text-black w-full  mt-5  rounded-md">
                 {/* <h1 className=" text-4xl my-2 p-2">Dashboard</h1> */}
                 <Outlet></Outlet>
             </div>
