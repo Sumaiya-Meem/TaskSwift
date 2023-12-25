@@ -11,6 +11,8 @@ import AddTask from "../DashboardPage/AddTask/AddTask";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import PreviousTask from "../DashboardPage/PreviousTAsk/PreviousTask";
 import ManageTask from "../DashboardPage/ManageTask/ManageTask";
+import Contact from "../HomePage/Contact/Contact";
+import About from "../HomePage/About/About";
   
   const router = createBrowserRouter([
     {
@@ -21,6 +23,14 @@ import ManageTask from "../DashboardPage/ManageTask/ManageTask";
         {
           path: "/",
           element: <Home></Home>,
+        },
+        {
+          path: "/contact",
+          element:<Contact></Contact>,
+        },
+        {
+          path: "/about",
+          element:<About></About>,
         },
         {
             path: "/dashboard",
