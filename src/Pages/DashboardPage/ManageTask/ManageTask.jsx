@@ -1,21 +1,28 @@
 import { Button } from "flowbite-react";
 import useTask from "../../../Hooks/useTask";
-import { TiDeleteOutline } from "react-icons/ti";
-import { FaEdit } from "react-icons/fa";
+import { MdDeleteForever } from "react-icons/md";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../../Context/AuthProvider";
+import { Link } from "react-router-dom";
 const ManageTask = () => {
     const [allTask, refetch] = useTask();
-    const {user} =useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const userTasks = allTask.filter(task => task.email === user.email);
-    const todoTasks = userTasks.filter(data => data.Status === "To_do");
-    const onGoingTasks = userTasks.filter(data => data.Status === "On_Going");
+    const todoTasks = userTasks.filter(data => data.Status === "ToDo");
+    const onGoingTasks = userTasks.filter(data => data.Status === "OnGoing");
     const completeTasks = userTasks.filter(data => data.Status === "Complete");
     const axiosSecure = useAxiosSecure();
 
-    const handleDelete= (id)=>{
+    const formatTime = (time) => {
+        const timeObj = { hour: 'numeric', minute: 'numeric', hour12: true };
+        const formattedTime = new Date(`2000-01-01T${time}`).toLocaleTimeString('en-US', timeObj);
+        return formattedTime;
+    };
+
+    const handleDelete = (id) => {
 
         Swal.fire({
             title: "Are you sure?",
@@ -25,23 +32,23 @@ const ManageTask = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-              axiosSecure.delete(`/tasks/${id}`)
-              .then(res=>{
-                if(res.data.deletedCount > 0){
-                 Swal.fire({
-                    title: "Deleted!",
-                    text: "Delete successfully.",
-                    icon: "success"
-                  });
-                }
-                
-              })
-            //   refetch()
-             
+                axiosSecure.delete(`/tasks/${id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Delete successfully.",
+                                icon: "success"
+                            });
+                        }
+
+                    })
+                //   refetch()
+
             }
-          });
+        });
     }
 
 
@@ -51,29 +58,32 @@ const ManageTask = () => {
             </h1>
             <div className="flex justify-evenly mt-3">
                 {/* Todo */}
-                <div className="">
+                <div className="capitalize">
                     <div className="w-56  h-10 bg-gray-400 flex items-center justify-center">
                         <h1 className="text-center">Todo</h1>
-                        <p className="ml-2 bg-white w-5 text-center h-5 text-black rounded-full ">{todoTasks.length}</p>
+                        <div className="ml-2  bg-white w-6 text-center h-6 text-black rounded-full ">
+                            <p className="">{todoTasks.length}</p>
+                        </div>
+
                     </div>
                     {
                         todoTasks.map(data =>
-                            <div className="my-2 bg-slate-200 p-2 rounded-md">
-                                   <div className="flex gap-5 items-center">
-                                   <p>{data.title}</p>
-                                    <div className=" ">
-                                        <Button onClick={()=>handleDelete(data._id)} color="" 
-                                        ><TiDeleteOutline className="text-2xl"></TiDeleteOutline></Button>
-                                        
+                            <div className="my-2 max-w-56 bg-slate-200 p-2 rounded-md">
+                                <div className="flex justify-between items-center">
+                                    <div>
+                                        <p className="font-semibold">{data.title}</p>
                                     </div>
-                                   </div>
-                                   
-                                <p className="w-52 text-slate-600 my-1">{data.Description}</p>
-                                <div className="flex gap-2">
-                                    <p><span className="">Deadline:</span> <span className="text-slate-600">{data.Date}</span></p>
-                                    <p className="text-slate-600">{data.Time}</p>
+                                    <div className="flex flex-col">
+                                        <Button onClick={() => handleDelete(data._id)} color=""
+                                        ><MdDeleteForever className="text-2xl text-red-600"></MdDeleteForever>
+                                        </Button>
+                                        <Link to={`/dashboard/detailTask/${data._id}`}>
+                                            <Button color="">
+                                                <MdOutlineRemoveRedEye className="text-2xl text-green-600"></MdOutlineRemoveRedEye>
+                                            </Button>
+                                        </Link>
+                                    </div>
                                 </div>
-                             
                             </div>
                         )
                     }
@@ -81,36 +91,34 @@ const ManageTask = () => {
                 {/* Todo */}
 
                 {/* Ongoing */}
-                <div className="">
+                <div className="capitalize">
                     <div className="w-56  h-10 bg-[#c261a2] flex items-center justify-center">
                         <h1 className="text-center">OnGoing</h1>
-                        <p className="ml-2 bg-white w-5 text-center h-5 text-black rounded-full ">{onGoingTasks.length}</p>
+                        <div className="ml-2  bg-white w-6 text-center h-6 text-black rounded-full ">
+                            <p className="">{onGoingTasks.length}</p>
+                        </div>
                     </div>
                     {
                         onGoingTasks.map(data =>
-                            <div className="my-2 bg-slate-200 p-2 rounded-md">
-                                <p>{data.title}</p>
-                                <p className="w-52 text-slate-600 my-1">{data.Description}</p>
-                                <div className="flex gap-2">
-                                    <p><span className="">Deadline:</span> <span className="text-slate-600">{data.Date}</span></p>
-                                    <p className="text-slate-600">{data.Time}</p>
+                            <div className="my-2 max-w-56 bg-slate-200 p-2 rounded-md">
+                                <div>
+                                    <p className="font-semibold">{data.title}</p>
                                 </div>
                             </div>
                         )
                     }
                 </div>
                 {/* Ongoing */}
-                <div className="w-52 h-10 bg-[#48a9c5] flex items-center justify-center">
+                <div className="w-56 capitalize h-10 bg-[#48a9c5] flex items-center justify-center">
                     <h1 className="text-center ">Complete</h1>
-                    <p className="ml-2 bg-white w-5 text-center h-5 text-black rounded-full ">{completeTasks.length}</p>
+                    <div className="ml-2  bg-white w-6 text-center h-6 text-black rounded-full ">
+                            <p className="">{completeTasks.length}</p>
+                        </div>
                     {
                         completeTasks.map(data =>
-                            <div className="my-2 bg-slate-100 p-2">
-                                <p>{data.title}</p>
-                                <p>{data.Description}</p>
-                                <div className="flex gap-2">
-                                    <p><span className="font-semibold">Deadline:</span> {data.Date}</p>
-                                    <p>{data.Time}</p>
+                            <div className="my-2 max-w-56 bg-slate-200 p-2 rounded-md">
+                                <div>
+                                    <p className="font-semibold">{data.title}</p>
                                 </div>
                             </div>
                         )

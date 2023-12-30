@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const axiosSecure = axios.create({
-    // baseURL:'https://rentiz-server-side.vercel.app'
-    baseURL:'http://localhost:5000'
+    baseURL:'https://y-murex-nine.vercel.app'
+    // baseURL:'http://localhost:5000'
 
 })
 const useAxiosSecure = () => {

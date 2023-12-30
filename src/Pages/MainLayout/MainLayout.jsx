@@ -3,7 +3,7 @@ import Header from "../HomePage/Header/Header";
 
 const MainLayout = () => {
     return (
-        <div>
+        <div className="max-w-screen-lg mx-auto">
             <Header></Header>
             <Outlet></Outlet>
         </div>

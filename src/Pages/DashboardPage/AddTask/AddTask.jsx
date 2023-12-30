@@ -21,7 +21,7 @@ const AddTask = () => {
         const Priority= form.Priority.value || "Not-Given"
         const Date= form.Date.value || "Not-Given"
         const Time= form.Time.value || "Not-Given"
-        const Status= "To_do" || "Not-Given"
+        const Status= "ToDo" || "Not-Given"
         const email= user.email || "Not-Given"
 
         const taskInfo ={

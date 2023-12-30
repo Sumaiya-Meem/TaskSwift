@@ -13,6 +13,9 @@ import PreviousTask from "../DashboardPage/PreviousTAsk/PreviousTask";
 import ManageTask from "../DashboardPage/ManageTask/ManageTask";
 import Contact from "../HomePage/Contact/Contact";
 import About from "../HomePage/About/About";
+import DetailTask from "../DashboardPage/DetailTask/DetailTask";
+import MyProfile from "../DashboardPage/MyProfile/MyProfile";
+import EditProfile from "../DashboardPage/MyProfile/EditProfile";
   
   const router = createBrowserRouter([
     {
@@ -52,19 +55,34 @@ import About from "../HomePage/About/About";
       errorElement:<ErrorPage></ErrorPage>,
       children: [
         {
-          path: "",
-          element: <AddTask></AddTask>,
+          path: "/dashboard",
+          element: <PrivateRoute><MyProfile></MyProfile></PrivateRoute>,
         },
         {
-          path: "previousTask",
-          element: <PreviousTask></PreviousTask>,
+          path: "/dashboard/editProfile/:id",  
+          element: <PrivateRoute><EditProfile></EditProfile></PrivateRoute>,
+          loader: ({ params }) => fetch(`http://localhost:5000/users/${params.id}`)
         },
         {
-          path: "mangeTask",
-          element: <ManageTask></ManageTask>,
+          path: "/dashboard/createTask",
+          element: <PrivateRoute><AddTask></AddTask></PrivateRoute>,
         },
+        {
+          path: "/dashboard/previousTask",  
+          element: <PrivateRoute><PreviousTask></PreviousTask></PrivateRoute>,
+        },
+        {
+          path: "/dashboard/mangeTask",    
+          element: <PrivateRoute><ManageTask></ManageTask></PrivateRoute>,
+        },
+        {
+          path: "/dashboard/detailTask/:id",  
+          element: <PrivateRoute><DetailTask></DetailTask></PrivateRoute>,
+          loader: ({ params }) => fetch(`http://localhost:5000/tasks/${params.id}`)
+        },
+        
       ]
-      }
+    }
   ]);
 
 export default router;
