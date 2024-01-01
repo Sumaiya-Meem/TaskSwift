@@ -4,7 +4,6 @@ import { app } from "../firebase/firebase.config";
 
 
 
-
 export const AuthContext =createContext(null)
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
@@ -32,7 +31,7 @@ const AuthProvider = ({children}) => {
     useEffect(()=>{
        const unSubscribe= onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
-            // console.log("Current User ",currentUser)
+            console.log("Current User ",currentUser)
             setLoading(false)
           });
           return ()=>{
