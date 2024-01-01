@@ -1,6 +1,8 @@
 import { Card } from "flowbite-react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa";
+
 const DetailTask = () => {
     const task = useLoaderData();
 
@@ -8,8 +10,11 @@ const DetailTask = () => {
     console.log(task);
 
 
-
-
+   const navigate =useNavigate();
+   
+   const goMangeTask =()=>{
+     navigate("/dashboard/mangeTask")
+   }
 
     const formatTime = (time) => {
         const validTime = typeof time === 'string' ? time : '';
@@ -24,8 +29,13 @@ const DetailTask = () => {
         <div>
             <div className="w-full">
                 <Card className="w-[500px]  mx-auto text-black mt-6 ">
-                    <div className=" flex justify-end">
-                        <FaRegEdit  className="text-xl"/>
+                    <div className=" flex justify-between">
+                        <div>
+                            <FaArrowLeft className="text-xl" onClick={goMangeTask}></FaArrowLeft>
+                        </div>
+                        <div>
+                            <FaRegEdit className="text-xl" />
+                        </div>
                     </div>
                     <div className="space-y-2">
                         <h1 className="text-xl">{title}</h1>
