@@ -93,7 +93,7 @@ const ManageTask = () => {
                 {/* Ongoing */}
                 <div className="capitalize">
                     <div className="w-56  h-10 bg-gray-400 flex items-center justify-center">
-                        <h1 className="text-center">Todo</h1>
+                        <h1 className="text-center">OnGoing</h1>
                         <div className="ml-2  bg-white w-6 text-center h-6 text-black rounded-full ">
                             <p className="">{onGoingTasks.length}</p>
                         </div>
@@ -124,7 +124,7 @@ const ManageTask = () => {
                 {/* Complete */}
                 <div className="capitalize">
                     <div className="w-56  h-10 bg-gray-400 flex items-center justify-center">
-                        <h1 className="text-center">Todo</h1>
+                        <h1 className="text-center">Complete</h1>
                         <div className="ml-2  bg-white w-6 text-center h-6 text-black rounded-full ">
                             <p className="">{completeTasks.length}</p>
                         </div>
