@@ -68,7 +68,7 @@ const ManageTask = () => {
                     </div>
                     {
                         todoTasks.map(data =>
-                            <div className="my-2 max-w-56 bg-slate-200 p-2 rounded-md">
+                            <div className="my-2 max-w-56 bg-slate-200 p-2 rounded-md shadow-md">
                                 <div className="flex justify-between items-center">
                                     <div>
                                         <p className="font-semibold">{data.title}</p>
@@ -92,33 +92,61 @@ const ManageTask = () => {
 
                 {/* Ongoing */}
                 <div className="capitalize">
-                    <div className="w-56  h-10 bg-[#c261a2] flex items-center justify-center">
-                        <h1 className="text-center">OnGoing</h1>
+                    <div className="w-56  h-10 bg-gray-400 flex items-center justify-center">
+                        <h1 className="text-center">Todo</h1>
                         <div className="ml-2  bg-white w-6 text-center h-6 text-black rounded-full ">
                             <p className="">{onGoingTasks.length}</p>
                         </div>
+
                     </div>
                     {
                         onGoingTasks.map(data =>
-                            <div className="my-2 max-w-56 bg-slate-200 p-2 rounded-md">
-                                <div>
-                                    <p className="font-semibold">{data.title}</p>
+                            <div className="my-2 max-w-56 bg-slate-200 p-2 rounded-md shadow-md">
+                                <div className="flex justify-between items-center">
+                                    <div>
+                                        <p className="font-semibold">{data.title}</p>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <Button onClick={() => handleDelete(data._id)} color=""
+                                        ><MdDeleteForever className="text-2xl text-red-600"></MdDeleteForever>
+                                        </Button>
+                                        <Link to={`/dashboard/detailTask/${data._id}`}>
+                                            <Button color="">
+                                                <MdOutlineRemoveRedEye className="text-2xl text-green-600"></MdOutlineRemoveRedEye>
+                                            </Button>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         )
                     }
                 </div>
-                {/* Ongoing */}
-                <div className="w-56 capitalize h-10 bg-[#48a9c5] flex items-center justify-center">
-                    <h1 className="text-center ">Complete</h1>
-                    <div className="ml-2  bg-white w-6 text-center h-6 text-black rounded-full ">
+                {/* Complete */}
+                <div className="capitalize">
+                    <div className="w-56  h-10 bg-gray-400 flex items-center justify-center">
+                        <h1 className="text-center">Todo</h1>
+                        <div className="ml-2  bg-white w-6 text-center h-6 text-black rounded-full ">
                             <p className="">{completeTasks.length}</p>
                         </div>
+
+                    </div>
                     {
                         completeTasks.map(data =>
-                            <div className="my-2 max-w-56 bg-slate-200 p-2 rounded-md">
-                                <div>
-                                    <p className="font-semibold">{data.title}</p>
+                            <div className="my-2 max-w-56 bg-slate-200 p-2 rounded-md shadow-md">
+                                <div className="flex justify-between items-center">
+                                    <div>
+                                        <p className="font-semibold">{data.title}</p>
+                                    </div>
+                                    <div className="flex flex-col">
+                                        <Button onClick={() => handleDelete(data._id)} color=""
+                                        ><MdDeleteForever className="text-2xl text-red-600"></MdDeleteForever>
+                                        </Button>
+                                        <Link to={`/dashboard/detailTask/${data._id}`}>
+                                            <Button color="">
+                                                <MdOutlineRemoveRedEye className="text-2xl text-green-600"></MdOutlineRemoveRedEye>
+                                            </Button>
+                                        </Link>
+                                    </div>
                                 </div>
                             </div>
                         )
